@@ -28,9 +28,13 @@ def getWeekday(year,month,day):
                         if getyear(year)==1:
                                 if day<=29:
                                         sum=sum+31+day
+                                else:
+                                        return 1
                         else:
                                 if day<=28:
                                         sum=sum+31+day
+                                else:
+                                        return 1
                 else:
                         for m in range(1,month):
                                 if m in[1,3,5,7,8,10,12]:
@@ -46,9 +50,13 @@ def getWeekday(year,month,day):
                         if month in [1,3,5,7,8,10,12]:
                                 if day<=31:
                                         sum=sum+day
+                                else:
+                                        return 1
                         else:
                                 if day<=30:
                                         sum=sum+day
+                                else:
+                                        return 1
         days=sum%7
         if days==0:
                 return '星期天'
@@ -65,6 +73,8 @@ def getWeekday(year,month,day):
         if days==6:
                 return'星期六'
 def column(year1,month1):
+        year1=int(year1)
+        month1=int(month1)
         print('星期天 ','    ','星期一 ','    ','星期二 ','    ','星期三 ','    ','星期四 ','    ','星期五 ','    ','星期六 ')
         day1=getWeekday(year1,month1,1)
         w1='星期天'
@@ -96,13 +106,15 @@ def column(year1,month1):
                 if day2==w7:
                         print(m,'\n','    ',end='')
                 else:
-                        print(m,s1,end='')
-        for m in range(10,31):
+                        if day2 in[w1,w2,w3,w4,w5,w6]:
+                                print(m,s1,end='')
+        for m in range(10,32):
                 day3=getWeekday(year1,month1,m)
                 if day3==w7:
                         print(m,'\n','    ',end='')
                 else:
-                        print(m,s3,end='')
+                        if day3 in [w1,w2,w3,w4,w5,w6]:
+                                print(m,s3,end='')
 _year=input('请输入年份')
 _month=input('请输入月份')
 column(_year,_month)
